@@ -36,8 +36,8 @@ Para rodar este projeto, você precisará dos seguintes requisitos instalados:
 
 ---
 ## **Importante! Ao clonar o projeto rode estes comandos em seguida**
-dotnet restore
-dotnet build
+- dotnet restore
+- dotnet build
 
 ---
 
