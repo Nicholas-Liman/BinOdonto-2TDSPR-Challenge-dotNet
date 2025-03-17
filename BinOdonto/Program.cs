@@ -56,9 +56,5 @@ app.UseAuthorization();
 // Configuração das rotas para API
 app.MapControllers();
 
-// Abre automaticamente o Swagger no navegador ao iniciar a API
-var swaggerUrl = "https://localhost:7214/swagger";
-Process.Start(new ProcessStartInfo { FileName = swaggerUrl, UseShellExecute = true });
-
 // Inicializa o aplicativo
 app.Run();
