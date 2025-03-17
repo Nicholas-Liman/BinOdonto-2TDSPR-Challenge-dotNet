@@ -1,49 +1,63 @@
-# 🦷 Sistema de Gestão Odontológica - B.I.N.
+### 🦷 **Sistema de Gestão Odontológica - B.I.N.**
 
-## **🎯 Sobre o Projeto**
-Este projeto foi desenvolvido como parte da entrega de **ADVANCED BUSINESS DEVELOPMENT WITH .NET** pela equipe **B.I.N.**, composta por:
+## 📌 **Sobre o Projeto**  
+Este projeto foi desenvolvido como parte da disciplina **ADVANCED BUSINESS DEVELOPMENT WITH .NET** pela equipe **B.I.N.**, composta por:
 
+👥 **Integrantes**  
 - 🏆 **Igor Gabriel Marcondes** - RM553544  
 - 🏆 **Maria Beatriz Fogolin** - RM552669  
 - 🏆 **Nicholas Barbosa Lima** - RM552744  
 
-### **📌 Objetivo**
-Este sistema foi desenvolvido em **ASP.NET Core C#** com o objetivo de fornecer um backend escalável para **gestão de dentistas e clientes**. Ele permite o **cadastro, atualização, consulta e exclusão** de registros de clientes e funcionários.  
-
-Os dados coletados pelo **aplicativo Kotlin** são **validados e armazenados** em um banco de dados **Oracle SQL**, permitindo que um **modelo de inteligência artificial analise os dados** posteriormente.
-
----
-
-## **Arquitetura do Projeto**
-Optamos por uma arquitetura monolítica para este projeto, pois ela proporciona uma implementação mais rápida e facilita a integração com o banco de dados Oracle. Além disso, devido à escala do sistema, não havia necessidade imediata de uma abordagem baseada em microservices já que mesmo monolítica é uma aplicação pequena.
-
-## **🛠 Tecnologias Utilizadas**
-- **Framework:** ASP.NET Core Web API  
-- **Banco de Dados:** Oracle SQL  
-- **ORM:** Entity Framework Core  
-- **Ferramenta de Teste:** Swagger / Postman  
-- **Padrão de Criação Implementado:** Singleton (`IConfiguracaoService`)
+🎯 **Objetivo**  
+O sistema foi desenvolvido em **ASP.NET Core C#** para fornecer um **backend escalável** para a **gestão de dentistas e clientes**. Ele permite:  
+✔️ **Cadastro, atualização, consulta e exclusão** de clientes e funcionários.  
+✔️ Integração com um **banco de dados Oracle SQL**.  
+✔️ Uso de **inteligência artificial** para análise de dados coletados.
 
 ---
 
-## **⚙️ Requisitos do Sistema**
-Para rodar este projeto, você precisará dos seguintes requisitos instalados:  
-
-- ✅ **.NET SDK** 7.0+  
-- ✅ **Banco de Dados Oracle** configurado  
-- ✅ **Visual Studio / VS Code** (recomendado)  
-- ✅ **Docker** (opcional, para rodar o banco de dados em container)  
-
----
-## **Importante! Ao clonar o projeto rode estes comandos em seguida**
-- dotnet restore
-- dotnet build
+## 🏗️ **Arquitetura do Projeto**  
+O projeto utiliza uma **arquitetura monolítica**, pois:  
+🔹 Proporciona **implementação mais rápida** e facilita a integração com o banco de dados Oracle.  
+🔹 **Não há necessidade de microservices** devido à escala do sistema.
 
 ---
 
-## **Lista de Endpoints**
+## 🛠️ **Tecnologias Utilizadas**  
+🔹 **Framework:** ASP.NET Core Web API  
+🔹 **Banco de Dados:** Oracle SQL  
+🔹 **ORM:** Entity Framework Core  
+🔹 **Ferramentas de Teste:** Swagger / Postman  
+🔹 **Padrão de Criação:** Singleton (`IConfiguracaoService`)
 
-### **ClienteController (API de Clientes)**
+---
+
+## ⚙️ **Requisitos do Sistema**  
+Para rodar o projeto, é necessário:  
+✅ **.NET SDK 7.0+**  
+✅ **Banco de Dados Oracle** configurado  
+✅ **Visual Studio / VS Code** (recomendado)  
+✅ **Docker** (opcional, para rodar o banco de dados em container)
+
+---
+
+## 🚀 **Rodando o Projeto**  
+Após clonar o repositório, execute:  
+```sh
+dotnet restore   # Restaura as dependências  
+dotnet build     # Compila o projeto  
+dotnet run       # Inicia a API  
+```  
+A API estará disponível em **https://localhost:7214/index.html**.
+
+🛠️ **Para testar via Swagger:**  
+Acesse **https://localhost:7214/swagger** no navegador.
+
+---
+
+## 📡 **Lista de Endpoints**
+
+### 📌 **ClienteController (API de Clientes)**  
 | Método HTTP | Endpoint                 | Descrição                      |
 |------------|--------------------------|--------------------------------|
 | GET        | `/api/cliente`           | Retorna todos os clientes      |
@@ -52,9 +66,7 @@ Para rodar este projeto, você precisará dos seguintes requisitos instalados:
 | PUT        | `/api/cliente/{id}`      | Edita um cliente existente     |
 | DELETE     | `/api/cliente/{id}`      | Exclui um cliente              |
 
----
-
-### **FuncionarioController (API de Funcionários)**
+### 📌 **FuncionarioController (API de Funcionários)**  
 | Método HTTP | Endpoint                 | Descrição                        |
 |------------|--------------------------|----------------------------------|
 | GET        | `/api/funcionario`       | Retorna todos os funcionários   |
@@ -63,9 +75,7 @@ Para rodar este projeto, você precisará dos seguintes requisitos instalados:
 | PUT        | `/api/funcionario/{id}`  | Edita um funcionário existente  |
 | DELETE     | `/api/funcionario/{id}`  | Exclui um funcionário            |
 
----
-
-### **HomeController (API de Configurações - Singleton)**
+### 📌 **HomeController (API de Configurações - Singleton)**  
 | Método HTTP | Endpoint                          | Descrição                                  |
 |------------|-----------------------------------|--------------------------------------------|
 | GET        | `/api/home`                      | Verifica se a API está rodando            |
@@ -75,7 +85,7 @@ Para rodar este projeto, você precisará dos seguintes requisitos instalados:
 ```
 GET /api/home/configuracao/AppNome
 ```
-📥 **Resposta esperada:**
+📥 **Resposta esperada:**  
 ```json
 {
   "chave": "AppNome",
@@ -85,23 +95,22 @@ GET /api/home/configuracao/AppNome
 
 ---
 
-## **📌 Padrão de Criação Utilizado - Singleton**
-O projeto implementa o padrão **Singleton** para gerenciamento de configurações globais através do **`IConfiguracaoService`**.
+## 🏗️ **Padrão de Criação Utilizado - Singleton**  
+Este projeto implementa o padrão **Singleton** para gerenciamento de configurações globais.
 
-### **🛠 Como funciona?**
-- Ele mantém **configurações globais** durante toda a execução da API.
-- **Evita criar múltiplas instâncias desnecessárias** de configurações.
-- É registrado no **Program.cs** como um **Singleton**:
-  ```csharp
-  builder.Services.AddSingleton<IConfiguracaoService, ConfiguracaoService>();
-  ```
-- **Pode ser acessado via API no `/api/home/configuracao/{chave}`**.
+🔹 Mantém **configurações globais** durante toda a execução da API.  
+🔹 **Evita múltiplas instâncias desnecessárias** de configurações.  
+🔹 Registrado no **Program.cs** como um **Singleton**:  
+```csharp
+builder.Services.AddSingleton<IConfiguracaoService, ConfiguracaoService>();
+```
+🔹 Pode ser acessado via API no `/api/home/configuracao/{chave}`.
 
 ---
 
-## **Exemplos de JSON para Testar**
+## 📌 **Exemplos de JSON para Teste**
 
-### **Cliente**
+### 📂 **Criar Cliente**  
 ```json
 {
   "clienteID": 0,
@@ -112,9 +121,7 @@ O projeto implementa o padrão **Singleton** para gerenciamento de configuraçõ
 }
 ```
 
----
-
-### **Funcionário**
+### 📂 **Criar Funcionário**  
 ```json
 {
   "funcionarioID": 0,
@@ -127,3 +134,24 @@ O projeto implementa o padrão **Singleton** para gerenciamento de configuraçõ
 ```
 
 ---
+
+## 🧪 **Testes da API**  
+### 🚀 **Testando com Postman**  
+1. **Baixe e abra o Postman**.  
+2. **Crie uma nova requisição** para `https://localhost:7214/api/cliente`.  
+3. **Envie um `POST` com o JSON de exemplo acima**.  
+4. **Confira a resposta e valide os dados**.
+
+### 🚀 **Testando com Curl**  
+Você pode testar a API diretamente no terminal:  
+```sh
+curl -X GET https://localhost:7214/api/cliente
+```
+
+---
+
+## 🌟 **Conclusão**  
+✔️ **API desenvolvida com arquitetura monolítica** para gestão odontológica.  
+✔️ **Uso do padrão Singleton** para configuração global.  
+✔️ **Banco de Dados Oracle SQL** integrado ao sistema.  
+✔️ **Endpoints documentados e testáveis via Postman, Swagger e Curl**.  
