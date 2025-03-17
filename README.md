@@ -53,3 +53,30 @@ Para rodar este projeto, você precisará dos seguintes requisitos instalados:
 | POST       | `/api/funcionario`       | Cria um novo funcionário         |
 | PUT        | `/api/funcionario/{id}`  | Edita um funcionário existente  |
 | DELETE     | `/api/funcionario/{id}`  | Exclui um funcionário            |
+
+---
+
+## **Exemplos de Json para testar**
+
+### **Cliente**
+{
+  "clienteID": 0,
+  "nome": "Carlos Oliveira",
+  "cpf": "510.654.194-81",
+  "dataNascimento": "1990-06-15",
+  "email": "carlos.oliveira@email.com"
+}
+
+---
+
+### **Funcionário**
+{
+  "funcionarioID": 0,
+  "nome": "Mariana Souza",
+  "cpf": "347.846.832-91",
+  "cargo": "Analista de Dados",
+  "salario": 6200.00,
+  "dataContratacao": "2024-02-20"
+}
+
+
