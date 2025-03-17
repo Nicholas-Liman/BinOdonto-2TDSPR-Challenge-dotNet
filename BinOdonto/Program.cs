@@ -18,6 +18,9 @@ builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
 builder.Services.AddScoped<IClienteApplicationService, ClienteApplicationService>();
 builder.Services.AddScoped<IFuncionarioApplicationService, FuncionarioApplicationService>();
 
+// Adicionando o Singleton para gerenciar configurações
+builder.Services.AddSingleton<IConfiguracaoService, ConfiguracaoService>();
+
 // Configuração de suporte para controllers e API
 builder.Services.AddControllers();
 
@@ -52,14 +55,6 @@ app.UseAuthorization();
 
 // Configuração das rotas para API
 app.MapControllers();
-
-// Remove o roteamento MVC, pois não há mais views no projeto
-// Se precisar manter MVC, garanta que ele não conflite com a API
-/*
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-*/
 
 // Abre automaticamente o Swagger no navegador ao iniciar a API
 var swaggerUrl = "https://localhost:7214/swagger";

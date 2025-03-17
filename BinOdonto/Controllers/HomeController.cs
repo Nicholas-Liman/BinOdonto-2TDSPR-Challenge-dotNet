@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using BinOdonto.Application.Interfaces;
 
 namespace BinOdonto.Presentation.Controllers
 {
@@ -6,6 +7,13 @@ namespace BinOdonto.Presentation.Controllers
     [Route("api/[controller]")]
     public class HomeController : ControllerBase
     {
+        private readonly IConfiguracaoService _configuracaoService;
+
+        public HomeController(IConfiguracaoService configuracaoService)
+        {
+            _configuracaoService = configuracaoService;
+        }
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -28,6 +36,14 @@ namespace BinOdonto.Presentation.Controllers
         public IActionResult Privacy()
         {
             return Ok(new { message = "Política de Privacidade (Placeholder)" });
+        }
+
+        // Novo endpoint para testar o Singleton
+        [HttpGet("configuracao/{chave}")]
+        public IActionResult GetConfiguracao(string chave)
+        {
+            var valor = _configuracaoService.GetConfiguracao(chave);
+            return Ok(new { chave, valor });
         }
     }
 }
