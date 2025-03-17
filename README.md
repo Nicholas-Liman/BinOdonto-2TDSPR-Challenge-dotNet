@@ -14,6 +14,9 @@ Os dados coletados pelo **aplicativo Kotlin** são **validados e armazenados** e
 
 ---
 
+## **Arquitetura do Projeto**
+Optamos por uma arquitetura monolítica para este projeto, pois ela proporciona uma implementação mais rápida e facilita a integração com o banco de dados Oracle. Além disso, devido à escala do sistema, não havia necessidade imediata de uma abordagem baseada em microservices já que mesmo monolítica é uma aplicação pequena.
+
 ## **🛠 Tecnologias Utilizadas**
 - **Framework:** ASP.NET Core Web API  
 - **Banco de Dados:** Oracle SQL  
