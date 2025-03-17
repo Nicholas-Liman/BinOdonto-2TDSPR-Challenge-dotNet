@@ -18,7 +18,8 @@ Os dados coletados pelo **aplicativo Kotlin** são **validados e armazenados** e
 - **Framework:** ASP.NET Core Web API  
 - **Banco de Dados:** Oracle SQL  
 - **ORM:** Entity Framework Core  
-- **Ferramenta de Teste:** Swagger / Postman
+- **Ferramenta de Teste:** Swagger / Postman  
+- **Padrão de Criação Implementado:** Singleton (`IConfiguracaoService`)
 
 ---
 
@@ -56,9 +57,44 @@ Para rodar este projeto, você precisará dos seguintes requisitos instalados:
 
 ---
 
-## **Exemplos de Json para testar**
+### **HomeController (API de Configurações - Singleton)**
+| Método HTTP | Endpoint                          | Descrição                                  |
+|------------|-----------------------------------|--------------------------------------------|
+| GET        | `/api/home`                      | Verifica se a API está rodando            |
+| GET        | `/api/home/configuracao/{chave}` | Obtém valores do Singleton `IConfiguracaoService` |
+
+✅ **Exemplo de chamada ao Singleton:**  
+```
+GET /api/home/configuracao/AppNome
+```
+📥 **Resposta esperada:**
+```json
+{
+  "chave": "AppNome",
+  "valor": "Sistema de Gestão Odontológica B.I.N."
+}
+```
+
+---
+
+## **📌 Padrão de Criação Utilizado - Singleton**
+O projeto implementa o padrão **Singleton** para gerenciamento de configurações globais através do **`IConfiguracaoService`**.
+
+### **🛠 Como funciona?**
+- Ele mantém **configurações globais** durante toda a execução da API.
+- **Evita criar múltiplas instâncias desnecessárias** de configurações.
+- É registrado no **Program.cs** como um **Singleton**:
+  ```csharp
+  builder.Services.AddSingleton<IConfiguracaoService, ConfiguracaoService>();
+  ```
+- **Pode ser acessado via API no `/api/home/configuracao/{chave}`**.
+
+---
+
+## **Exemplos de JSON para Testar**
 
 ### **Cliente**
+```json
 {
   "clienteID": 0,
   "nome": "Carlos Oliveira",
@@ -66,10 +102,12 @@ Para rodar este projeto, você precisará dos seguintes requisitos instalados:
   "dataNascimento": "1990-06-15",
   "email": "carlos.oliveira@email.com"
 }
+```
 
 ---
 
 ### **Funcionário**
+```json
 {
   "funcionarioID": 0,
   "nome": "Mariana Souza",
@@ -78,5 +116,6 @@ Para rodar este projeto, você precisará dos seguintes requisitos instalados:
   "salario": 6200.00,
   "dataContratacao": "2024-02-20"
 }
+```
 
-
+---
