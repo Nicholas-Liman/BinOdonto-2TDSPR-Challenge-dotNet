@@ -35,6 +35,11 @@ Para rodar este projeto, você precisará dos seguintes requisitos instalados:
 - ✅ **Docker** (opcional, para rodar o banco de dados em container)  
 
 ---
+## **Importante! Ao clonar o projeto rode estes comandos em seguida**
+dotnet restore
+dotnet build
+
+---
 
 ## **Lista de Endpoints**
 
