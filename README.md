@@ -128,7 +128,7 @@ GET /api/recomendacao?cep=08230-000
   "cpf": "510.654.194-81",
   "dataNascimento": "1990-06-15",
   "email": "carlos@email.com",
-  "cep": "08230-000"
+  "cep": "08230000"
 }
 ```
 
@@ -142,7 +142,7 @@ GET /api/recomendacao?cep=08230-000
   "cargo": "Ortodontista",
   "salario": 7000,
   "dataContratacao": "2025-05-19",
-  "cep": "08110-000"
+  "cep": "08110000"
 }
 ```
 
