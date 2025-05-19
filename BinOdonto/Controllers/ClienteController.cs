@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BinOdonto.Application.Dtos;
 using BinOdonto.Application.Interfaces;
-using System.Linq;
+using Swashbuckle.AspNetCore.Annotations;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BinOdonto.Presentation.Controllers
 {
@@ -17,8 +18,8 @@ namespace BinOdonto.Presentation.Controllers
             _clienteService = clienteService;
         }
 
-        // GET: api/cliente
         [HttpGet]
+        [SwaggerOperation(Summary = "Lista todos os clientes", Description = "Retorna todos os clientes cadastrados.")]
         public ActionResult<IEnumerable<ClienteEditDto>> GetAll()
         {
             var clientes = _clienteService.ObterTodosClientes();
@@ -29,14 +30,15 @@ namespace BinOdonto.Presentation.Controllers
                 Nome = cliente.Nome,
                 CPF = cliente.CPF,
                 DataNascimento = cliente.DataNascimento,
-                Email = cliente.Email
+                Email = cliente.Email,
+                CEP = cliente.CEP
             }).ToList();
 
             return Ok(clienteDtos);
         }
 
-        // GET: api/cliente/{id}
         [HttpGet("{id}")]
+        [SwaggerOperation(Summary = "Busca cliente por ID", Description = "Retorna os dados de um cliente específico.")]
         public ActionResult<ClienteEditDto> GetById(int id)
         {
             var cliente = _clienteService.ObterClientePorId(id);
@@ -49,14 +51,15 @@ namespace BinOdonto.Presentation.Controllers
                 Nome = cliente.Nome,
                 CPF = cliente.CPF,
                 DataNascimento = cliente.DataNascimento,
-                Email = cliente.Email
+                Email = cliente.Email,
+                CEP = cliente.CEP
             };
 
             return Ok(clienteDto);
         }
 
-        // POST: api/cliente
         [HttpPost]
+        [SwaggerOperation(Summary = "Cria um novo cliente", Description = "Cadastra um novo cliente com base nos dados fornecidos, incluindo CEP.")]
         public ActionResult Create([FromBody] ClienteDTO model)
         {
             if (!ModelState.IsValid)
@@ -66,8 +69,8 @@ namespace BinOdonto.Presentation.Controllers
             return Ok(new { message = "Cliente criado com sucesso!" });
         }
 
-        // PUT: api/cliente/{id}
         [HttpPut("{id}")]
+        [SwaggerOperation(Summary = "Atualiza um cliente", Description = "Edita os dados de um cliente, incluindo CEP.")]
         public ActionResult Edit(int id, [FromBody] ClienteEditDto model)
         {
             if (!ModelState.IsValid)
@@ -81,8 +84,8 @@ namespace BinOdonto.Presentation.Controllers
             return Ok(new { message = "Cliente atualizado com sucesso!" });
         }
 
-        // DELETE: api/cliente/{id}
         [HttpDelete("{id}")]
+        [SwaggerOperation(Summary = "Exclui um cliente", Description = "Remove um cliente do sistema.")]
         public ActionResult Delete(int id)
         {
             var cliente = _clienteService.ObterClientePorId(id);

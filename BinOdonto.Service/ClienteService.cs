@@ -7,18 +7,20 @@ namespace BinOdonto.Service
 {
     public class ClienteService
     {
-        private readonly ApplicationDbContext _context; 
+        private readonly ApplicationDbContext _context;
 
         public ClienteService(ApplicationDbContext context)
         {
             _context = context;
         }
 
+        // Lista todos os clientes
         public async Task<IEnumerable<Cliente>> GetClientesAsync()
         {
             return await _context.Cliente.ToListAsync();
         }
 
+        // Busca cliente por ID
         public async Task<Cliente> GetClienteByIdAsync(int id)
         {
             var cliente = await _context.Cliente.FindAsync(id);
@@ -29,6 +31,7 @@ namespace BinOdonto.Service
             return cliente;
         }
 
+        // Cadastra um novo cliente
         public async Task<Cliente> AddClienteAsync(ClienteDTO clienteDTO)
         {
             try
@@ -39,8 +42,10 @@ namespace BinOdonto.Service
                     Nome = clienteDTO.Nome,
                     CPF = clienteDTO.CPF,
                     DataNascimento = clienteDTO.DataNascimento,
-                    Email = clienteDTO.Email
+                    Email = clienteDTO.Email,
+                    CEP = clienteDTO.CEP
                 };
+
                 _context.Cliente.Add(cliente);
                 await _context.SaveChangesAsync();
                 return cliente;
@@ -51,6 +56,7 @@ namespace BinOdonto.Service
             }
         }
 
+        // Atualiza dados de cliente existente
         public async Task<Cliente?> UpdateClienteAsync(int id, ClienteDTO clienteDTO)
         {
             var cliente = await _context.Cliente.FindAsync(id);
@@ -60,6 +66,7 @@ namespace BinOdonto.Service
             cliente.CPF = clienteDTO.CPF;
             cliente.DataNascimento = clienteDTO.DataNascimento;
             cliente.Email = clienteDTO.Email;
+            cliente.CEP = clienteDTO.CEP;
 
             try
             {
@@ -72,6 +79,7 @@ namespace BinOdonto.Service
             }
         }
 
+        // Exclui cliente por ID
         public async Task<bool> DeleteClienteAsync(int id)
         {
             var cliente = await _context.Cliente.FindAsync(id);

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BinOdonto.Application.Dtos;
 using BinOdonto.Application.Interfaces;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 
@@ -17,16 +18,16 @@ namespace BinOdonto.Presentation.Controllers
             _funcionarioService = funcionarioService;
         }
 
-        // GET: api/funcionario
         [HttpGet]
+        [SwaggerOperation(Summary = "Lista todos os funcionários", Description = "Retorna todos os funcionários cadastrados.")]
         public ActionResult<IEnumerable<FuncionarioEditDto>> GetAll()
         {
             var funcionarios = _funcionarioService.ObterTodosFuncionarios();
             return Ok(funcionarios);
         }
 
-        // GET: api/funcionario/{FuncionarioID}
         [HttpGet("{FuncionarioID}")]
+        [SwaggerOperation(Summary = "Busca funcionário por ID", Description = "Retorna os dados de um funcionário específico.")]
         public ActionResult<FuncionarioEditDto> GetById(int FuncionarioID)
         {
             var funcionario = _funcionarioService.ObterFuncionarioPorId(FuncionarioID);
@@ -36,8 +37,8 @@ namespace BinOdonto.Presentation.Controllers
             return Ok(funcionario);
         }
 
-        // POST: api/funcionario
         [HttpPost]
+        [SwaggerOperation(Summary = "Cria um novo funcionário", Description = "Cadastra um novo funcionário, incluindo o campo CEP.")]
         public ActionResult Create([FromBody] FuncionarioDTO model)
         {
             if (!ModelState.IsValid)
@@ -47,10 +48,8 @@ namespace BinOdonto.Presentation.Controllers
             return Ok(new { message = "Funcionário criado com sucesso!" });
         }
 
-
-
-        // PUT: api/funcionario/{FuncionarioID}
         [HttpPut("{FuncionarioID}")]
+        [SwaggerOperation(Summary = "Atualiza um funcionário", Description = "Edita os dados de um funcionário, incluindo o campo CEP.")]
         public ActionResult Edit(int FuncionarioID, [FromBody] FuncionarioEditDto model)
         {
             if (!ModelState.IsValid)
@@ -71,8 +70,8 @@ namespace BinOdonto.Presentation.Controllers
             }
         }
 
-        // DELETE: api/funcionario/{FuncionarioID}
         [HttpDelete("{FuncionarioID}")]
+        [SwaggerOperation(Summary = "Exclui um funcionário", Description = "Remove um funcionário do sistema.")]
         public ActionResult Delete(int FuncionarioID)
         {
             var funcionario = _funcionarioService.ObterFuncionarioPorId(FuncionarioID);

@@ -17,6 +17,7 @@ namespace BinOdonto.Service
             _context = context;
         }
 
+        // Cadastra um novo funcionário com base nos dados do DTO
         public Funcionario? SalvarDadosFuncionario(FuncionarioDTO entity)
         {
             var funcionario = new Funcionario
@@ -25,7 +26,8 @@ namespace BinOdonto.Service
                 CPF = entity.CPF,
                 Cargo = entity.Cargo,
                 Salario = entity.Salario,
-                DataContratacao = entity.DataContratacao
+                DataContratacao = entity.DataContratacao,
+                CEP = entity.CEP
             };
 
             _context.Funcionario.Add(funcionario);
@@ -33,6 +35,7 @@ namespace BinOdonto.Service
             return funcionario;
         }
 
+        // Edita os dados de um funcionário existente pelo ID
         public Funcionario? EditarDadosFuncionario(int id, FuncionarioEditDto entity)
         {
             var funcionario = _context.Funcionario.Find(id);
@@ -43,11 +46,13 @@ namespace BinOdonto.Service
             funcionario.Cargo = entity.Cargo;
             funcionario.Salario = entity.Salario;
             funcionario.DataContratacao = entity.DataContratacao;
+            funcionario.CEP = entity.CEP;
 
             _context.SaveChanges();
             return funcionario;
         }
 
+        // Remove um funcionário do banco de dados
         public Funcionario? DeletarDadosFuncionario(int id)
         {
             var funcionario = _context.Funcionario.Find(id);
@@ -58,6 +63,7 @@ namespace BinOdonto.Service
             return funcionario;
         }
 
+        // Busca um funcionário por ID e retorna um DTO para exibição
         public FuncionarioEditDto? ObterFuncionarioPorId(int id)
         {
             var funcionario = _context.Funcionario.Find(id);
@@ -70,10 +76,12 @@ namespace BinOdonto.Service
                 CPF = funcionario.CPF,
                 Cargo = funcionario.Cargo,
                 Salario = funcionario.Salario,
-                DataContratacao = funcionario.DataContratacao
+                DataContratacao = funcionario.DataContratacao,
+                CEP = funcionario.CEP
             };
         }
 
+        // Retorna todos os funcionários convertidos em DTOs para exibição
         public IEnumerable<FuncionarioEditDto> ObterTodosFuncionarios()
         {
             return _context.Funcionario.Select(funcionario => new FuncionarioEditDto
@@ -83,7 +91,8 @@ namespace BinOdonto.Service
                 CPF = funcionario.CPF,
                 Cargo = funcionario.Cargo,
                 Salario = funcionario.Salario,
-                DataContratacao = funcionario.DataContratacao
+                DataContratacao = funcionario.DataContratacao,
+                CEP = funcionario.CEP
             }).ToList();
         }
     }

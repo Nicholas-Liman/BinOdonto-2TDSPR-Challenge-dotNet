@@ -4,6 +4,7 @@ using BinOdonto.Service;
 using BinOdonto.Domain.Interfaces;
 using BinOdonto.Data.AppData;
 using BinOdonto.Data.Repositories;
+using Microsoft.OpenApi.Models;
 using System.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,40 +22,50 @@ builder.Services.AddScoped<IFuncionarioApplicationService, FuncionarioApplicatio
 // Adicionando o Singleton para gerenciar configurações
 builder.Services.AddSingleton<IConfiguracaoService, ConfiguracaoService>();
 
+// Serviços de recomendação e integração externa
+builder.Services.AddScoped<FuncionarioRecomendadoService>(); // Serviço de IA/recomendação
+builder.Services.AddHttpClient<IViaCepService, ViaCepService>(); // Cliente HTTP para ViaCEP
+
 // Configuração de suporte para controllers e API
 builder.Services.AddControllers();
 
-// Configuração do Swagger
+// Configuração do Swagger com anotações
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.EnableAnnotations(); // Ativa suporte a [SwaggerOperation]
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "BinOdonto API",
+        Version = "v1",
+        Description = "API RESTful para gerenciamento de clientes e funcionários com recomendação via CEP"
+    });
+});
 
 var app = builder.Build();
 
 // Habilita o Swagger antes do roteamento
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage(); // Exibe página detalhada de erro no ambiente de desenvolvimento
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "BinOdonto API v1");
-        c.RoutePrefix = string.Empty; // Isso faz com que o Swagger abra direto na raiz do site
+        c.RoutePrefix = string.Empty;
     });
 }
 else
 {
-    app.UseExceptionHandler("/Home/Error"); // Redireciona para a página de erro customizada
+    app.UseExceptionHandler("/Home/Error");
 }
 
-// Habilita arquivos estáticos (CSS, JS, imagens etc.)
 app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthorization();
 
-// Configuração das rotas para API
 app.MapControllers();
 
-// Inicializa o aplicativo
 app.Run();

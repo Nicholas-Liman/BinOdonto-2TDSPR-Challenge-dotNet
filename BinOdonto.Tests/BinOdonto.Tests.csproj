@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.5" />
+    <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="xunit.abstractions" Version="2.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BinOdonto.Application\BinOdonto.Application.csproj" />
+    <ProjectReference Include="..\BinOdonto.Data\BinOdonto.Data.csproj" />
+    <ProjectReference Include="..\BinOdonto.Domain\BinOdonto.Domain.csproj" />
+    <ProjectReference Include="..\BinOdonto.Service\BinOdonto.Service.csproj" />
+    <ProjectReference Include="..\BinOdonto\BinOdonto.csproj" />
+  </ItemGroup>
+
+</Project>

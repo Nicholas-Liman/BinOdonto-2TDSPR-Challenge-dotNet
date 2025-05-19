@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinOdonto.Data", "BinOdonto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinOdonto.Service", "BinOdonto.Service\BinOdonto.Service.csproj", "{A655BF7E-AB8D-4D44-9752-E03472C1AAE0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinOdonto.Tests", "BinOdonto.Tests\BinOdonto.Tests.csproj", "{E3B60582-8FF4-42AF-BF56-AE028B9B660E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{A655BF7E-AB8D-4D44-9752-E03472C1AAE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A655BF7E-AB8D-4D44-9752-E03472C1AAE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A655BF7E-AB8D-4D44-9752-E03472C1AAE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3B60582-8FF4-42AF-BF56-AE028B9B660E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3B60582-8FF4-42AF-BF56-AE028B9B660E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3B60582-8FF4-42AF-BF56-AE028B9B660E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3B60582-8FF4-42AF-BF56-AE028B9B660E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +64,7 @@ Global
 		{91AFF3E7-232B-41E3-9C4C-2954C9A60E7A} = {FA82DC5C-6EE0-4EA8-BE9F-24C0958E4DD1}
 		{E7CD0F11-A074-448C-8C3C-C0DFF12181C3} = {DCA76AD7-A8D4-435C-BF21-9D55E99E29CB}
 		{A655BF7E-AB8D-4D44-9752-E03472C1AAE0} = {DCA76AD7-A8D4-435C-BF21-9D55E99E29CB}
+		{E3B60582-8FF4-42AF-BF56-AE028B9B660E} = {46BFF5CE-7974-4A03-8BD3-262780ECA1E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DCDCF584-1255-45CD-AD04-13F9FBF9AA77}

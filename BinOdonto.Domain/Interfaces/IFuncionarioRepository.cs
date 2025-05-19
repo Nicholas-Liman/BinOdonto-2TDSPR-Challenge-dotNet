@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using BinOdonto.Domain.Entities;
 
 namespace BinOdonto.Domain.Interfaces
@@ -10,5 +11,6 @@ namespace BinOdonto.Domain.Interfaces
         Funcionario? SalvarDados(Funcionario entity);
         Funcionario? EditarDados(Funcionario entity);
         Funcionario? DeletarDados(int id);
+        Task<List<Funcionario>> GetAllAsync();
     }
 }

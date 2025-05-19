@@ -1,6 +1,10 @@
 ﻿using BinOdonto.Domain.Entities;
 using BinOdonto.Domain.Interfaces;
 using BinOdonto.Data.AppData;
+using Microsoft.EntityFrameworkCore; // Necessário para ToListAsync
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BinOdonto.Data.Repositories
 {
@@ -19,7 +23,7 @@ namespace BinOdonto.Data.Repositories
             try
             {
                 _context.Funcionario.Add(entity);
-                _context.SaveChanges(); // Importante: garantir que as mudanças são persistidas
+                _context.SaveChanges();
                 return entity;
             }
             catch (Exception ex)
@@ -34,10 +38,16 @@ namespace BinOdonto.Data.Repositories
             return _context.Funcionario.Any(f => f.CPF == cpf);
         }
 
-        // Obter todos os Funcionários
+        // Obter todos os Funcionários (síncrono)
         public IEnumerable<Funcionario> ObterTodos()
         {
-            return _context.Funcionario.ToList(); // Retorna uma lista vazia se não houver resultados
+            return _context.Funcionario.ToList();
+        }
+
+        // NOVO: Obter todos os Funcionários (assíncrono)
+        public async Task<List<Funcionario>> GetAllAsync()
+        {
+            return await _context.Funcionario.ToListAsync();
         }
 
         // Obter Funcionário por ID
@@ -55,7 +65,6 @@ namespace BinOdonto.Data.Repositories
                 return null;
             }
 
-            // Atualize os campos
             funcionarioExistente.Nome = funcionario.Nome;
             funcionarioExistente.CPF = funcionario.CPF;
             funcionarioExistente.Cargo = funcionario.Cargo;
@@ -63,7 +72,7 @@ namespace BinOdonto.Data.Repositories
             funcionarioExistente.DataContratacao = funcionario.DataContratacao;
 
             _context.Funcionario.Update(funcionarioExistente);
-            _context.SaveChanges();  // Persistir as alterações
+            _context.SaveChanges();
             return funcionarioExistente;
         }
 

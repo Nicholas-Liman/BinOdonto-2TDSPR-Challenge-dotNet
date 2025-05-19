@@ -1,17 +1,21 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace BinOdonto.Domain.Entities
+public class Cliente
 {
-    [Table("tb_cliente")]
-    public class Cliente
-    {
-        [Key]
-        public int ClienteID { get; set; }
-        public required string Nome { get; set; }
-        public required string CPF { get; set; }
-        public DateTime DataNascimento { get; set; }
-        public required string Email { get; set; }
-    }
+    [Key]
+    public int ClienteID { get; set; }
+
+    [Required]
+    public required string Nome { get; set; }
+
+    [Required]
+    public required string CPF { get; set; }
+
+    public DateTime DataNascimento { get; set; }
+
+    [Required]
+    public required string Email { get; set; }
+
+    [Required]
+    public required string CEP { get; set; }
 }

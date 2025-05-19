@@ -27,9 +27,10 @@ namespace BinOdonto.Service
             {
                 ClienteID = id,
                 Nome = entity.Nome,
-                CPF = entity.CPF,  // Incluindo CPF conforme sua implementação
-                DataNascimento = entity.DataNascimento,  // Mantendo DataNascimento, caso seja necessário
-                Email = entity.Email
+                CPF = entity.CPF,
+                DataNascimento = entity.DataNascimento,
+                Email = entity.Email,
+                CEP = entity.CEP
             };
 
             return _clienteRepository.EditarDados(cliente);
@@ -50,13 +51,13 @@ namespace BinOdonto.Service
         // Salvar um novo Cliente
         public Cliente? SalvarDadosCliente(ClienteDTO entity)
         {
-            // Criar cliente e salvar no repositório
             var cliente = new Cliente
             {
                 Nome = entity.Nome,
                 CPF = entity.CPF,
                 DataNascimento = entity.DataNascimento,
                 Email = entity.Email,
+                CEP = entity.CEP
             };
 
             return _clienteRepository.SalvarDados(cliente);

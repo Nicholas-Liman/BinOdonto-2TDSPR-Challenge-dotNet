@@ -23,5 +23,9 @@ namespace BinOdonto.Application.Dtos
         [Required(ErrorMessage = "O Email é obrigatório.")]
         [EmailAddress(ErrorMessage = "O formato do email é inválido.")]
         public required string Email { get; set; }
+
+        [Required(ErrorMessage = "O CEP é obrigatório.")]
+        [RegularExpression(@"^\d{8}$", ErrorMessage = "O CEP deve conter 8 dígitos numéricos.")]
+        public required string CEP { get; set; }
     }
 }

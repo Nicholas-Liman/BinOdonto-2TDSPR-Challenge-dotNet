@@ -14,11 +14,13 @@ namespace BinOdonto.Service
             _context = context;
         }
 
+        // Lista todos os funcionários
         public async Task<IEnumerable<Funcionario>> GetFuncionariosAsync()
         {
             return await _context.Funcionario.ToListAsync();
         }
 
+        // Busca funcionário por ID
         public async Task<Funcionario> GetFuncionarioByIdAsync(int id)
         {
             var funcionario = await _context.Funcionario.FindAsync(id);
@@ -29,6 +31,7 @@ namespace BinOdonto.Service
             return funcionario;
         }
 
+        // Adiciona novo funcionário
         public async Task<Funcionario> AddFuncionarioAsync(FuncionarioDTO funcionarioDTO)
         {
             try
@@ -40,7 +43,8 @@ namespace BinOdonto.Service
                     CPF = funcionarioDTO.CPF,
                     Cargo = funcionarioDTO.Cargo,
                     Salario = funcionarioDTO.Salario,
-                    DataContratacao = funcionarioDTO.DataContratacao
+                    DataContratacao = funcionarioDTO.DataContratacao,
+                    CEP = funcionarioDTO.CEP
                 };
                 _context.Funcionario.Add(funcionario);
                 await _context.SaveChangesAsync();
@@ -52,6 +56,7 @@ namespace BinOdonto.Service
             }
         }
 
+        // Atualiza dados de funcionário
         public async Task<Funcionario> UpdateFuncionarioAsync(int id, FuncionarioDTO funcionarioDTO)
         {
             var funcionario = await _context.Funcionario.FindAsync(id);
@@ -62,6 +67,7 @@ namespace BinOdonto.Service
             funcionario.Cargo = funcionarioDTO.Cargo;
             funcionario.Salario = funcionarioDTO.Salario;
             funcionario.DataContratacao = funcionarioDTO.DataContratacao;
+            funcionario.CEP = funcionarioDTO.CEP;
 
             try
             {
@@ -74,6 +80,7 @@ namespace BinOdonto.Service
             }
         }
 
+        // Deleta funcionário por ID
         public async Task<bool> DeleteFuncionarioAsync(int id)
         {
             var funcionario = await _context.Funcionario.FindAsync(id);

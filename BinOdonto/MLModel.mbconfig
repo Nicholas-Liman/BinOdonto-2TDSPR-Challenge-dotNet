@@ -1,0 +1,346 @@
+﻿{
+  "Scenario": "Classification",
+  "DataSource": {
+    "Version": 3,
+    "EscapeCharacter": "\"",
+    "ReadMultiLines": false,
+    "KeepDiacritics": false,
+    "KeepPunctuations": false,
+    "AllowQuoting": false,
+    "Type": "TabularFile",
+    "FilePath": "D:\\Downloads\\dataset_proximidade_cep_sao_paulo_final.csv",
+    "Delimiter": ",",
+    "DecimalMarker": ".",
+    "HasHeader": true,
+    "ColumnProperties": [
+      {
+        "ColumnName": "cep_cliente_num",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "cep_funcionario_num",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "diferenca_ceps",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "mesmo_prefixo",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Boolean",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "proximo",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "Boolean",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      }
+    ]
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 3,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeBinary",
+        "Score": 1.0,
+        "RuntimeInSeconds": 0.453,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3",
+          "e0": {
+            "OutputColumnNames": [
+              "mesmo_prefixo"
+            ],
+            "InputColumnNames": [
+              "mesmo_prefixo"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "cep_cliente_num",
+              "cep_funcionario_num",
+              "diferenca_ceps"
+            ],
+            "InputColumnNames": [
+              "cep_cliente_num",
+              "cep_funcionario_num",
+              "diferenca_ceps"
+            ]
+          },
+          "e2": {
+            "InputColumnNames": [
+              "mesmo_prefixo",
+              "cep_cliente_num",
+              "cep_funcionario_num",
+              "diferenca_ceps"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 254,
+            "FeatureFraction": 1.0,
+            "LearningRate": 0.099999999999999978,
+            "LabelColumnName": "proximo",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": false
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeBinary",
+        "Score": 1.0,
+        "RuntimeInSeconds": 0.284,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3",
+          "e0": {
+            "OutputColumnNames": [
+              "mesmo_prefixo"
+            ],
+            "InputColumnNames": [
+              "mesmo_prefixo"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "cep_cliente_num",
+              "cep_funcionario_num",
+              "diferenca_ceps"
+            ],
+            "InputColumnNames": [
+              "cep_cliente_num",
+              "cep_funcionario_num",
+              "diferenca_ceps"
+            ]
+          },
+          "e2": {
+            "InputColumnNames": [
+              "mesmo_prefixo",
+              "cep_cliente_num",
+              "cep_funcionario_num",
+              "diferenca_ceps"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "NumberOfLeaves": 5,
+            "MinimumExampleCountPerLeaf": 27,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 301,
+            "FeatureFraction": 0.97405203093835224,
+            "LearningRate": 0.084257871307385657,
+            "LabelColumnName": "proximo",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": false
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeBinary",
+        "Score": 1.0,
+        "RuntimeInSeconds": 0.275,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3",
+          "e0": {
+            "OutputColumnNames": [
+              "mesmo_prefixo"
+            ],
+            "InputColumnNames": [
+              "mesmo_prefixo"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "cep_cliente_num",
+              "cep_funcionario_num",
+              "diferenca_ceps"
+            ],
+            "InputColumnNames": [
+              "cep_cliente_num",
+              "cep_funcionario_num",
+              "diferenca_ceps"
+            ]
+          },
+          "e2": {
+            "InputColumnNames": [
+              "mesmo_prefixo",
+              "cep_cliente_num",
+              "cep_funcionario_num",
+              "diferenca_ceps"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 14,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 213,
+            "FeatureFraction": 0.99999999,
+            "LearningRate": 0.11868327367918496,
+            "LabelColumnName": "proximo",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": false
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeBinary",
+        "Score": 1.0,
+        "RuntimeInSeconds": 0.278,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3",
+          "e0": {
+            "OutputColumnNames": [
+              "mesmo_prefixo"
+            ],
+            "InputColumnNames": [
+              "mesmo_prefixo"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "cep_cliente_num",
+              "cep_funcionario_num",
+              "diferenca_ceps"
+            ],
+            "InputColumnNames": [
+              "cep_cliente_num",
+              "cep_funcionario_num",
+              "diferenca_ceps"
+            ]
+          },
+          "e2": {
+            "InputColumnNames": [
+              "mesmo_prefixo",
+              "cep_cliente_num",
+              "cep_funcionario_num",
+              "diferenca_ceps"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 18,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 254,
+            "FeatureFraction": 0.9950412483642247,
+            "LearningRate": 0.02719485370361863,
+            "LabelColumnName": "proximo",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": false
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastForestBinary",
+        "Score": 1.0,
+        "RuntimeInSeconds": 0.299,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e7 * e8",
+          "e0": {
+            "OutputColumnNames": [
+              "mesmo_prefixo"
+            ],
+            "InputColumnNames": [
+              "mesmo_prefixo"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "cep_cliente_num",
+              "cep_funcionario_num",
+              "diferenca_ceps"
+            ],
+            "InputColumnNames": [
+              "cep_cliente_num",
+              "cep_funcionario_num",
+              "diferenca_ceps"
+            ]
+          },
+          "e2": {
+            "InputColumnNames": [
+              "mesmo_prefixo",
+              "cep_cliente_num",
+              "cep_funcionario_num",
+              "diferenca_ceps"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e7": {
+            "NumberOfTrees": 4,
+            "NumberOfLeaves": 4,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "proximo",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "LabelColumnName": "proximo",
+            "ScoreColumnName": "Score"
+          }
+        }
+      }
+    ],
+    "Estimators": {
+      "e0": "OneHotEncoding",
+      "e1": "ReplaceMissingValues",
+      "e2": "Concatenate",
+      "e3": "FastTreeBinary",
+      "e4": "LightGbmBinary",
+      "e5": "LbfgsLogisticRegressionBinary",
+      "e6": "SdcaLogisticRegressionBinary",
+      "e7": "FastForestBinary",
+      "e8": "Naive"
+    },
+    "Schema": "e0 * e1 * e2 * (e3 + e4 + e5 + e6 + e7 * e8)",
+    "MetricName": "Accuracy",
+    "ModelFilePath": "D:\\Downloads\\BinOdonto-2TDSPR-Challenge-dotNet-master\\BinOdonto\\MLModel.mlnet"
+  },
+  "Type": "TrainingConfig",
+  "Version": 5,
+  "TrainingOption": {
+    "Version": 2,
+    "Subsampling": false,
+    "Type": "ClassificationTrainingOption",
+    "TrainingTime": 60,
+    "LabelColumn": "proximo",
+    "ValidationOption": {
+      "Version": 0,
+      "Type": "CrossValidationValidationOption",
+      "NumberOfFolds": 5
+    }
+  }
+}

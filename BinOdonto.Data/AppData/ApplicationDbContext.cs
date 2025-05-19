@@ -23,6 +23,7 @@ namespace BinOdonto.Data.AppData
                 entity.Property(e => e.CPF).HasColumnName("CPF");
                 entity.Property(e => e.DataNascimento).HasColumnName("DATANASCIMENTO");
                 entity.Property(e => e.Email).HasColumnName("EMAIL");
+                entity.Property(e => e.CEP).HasColumnName("CEP");
             });
 
             modelBuilder.Entity<Funcionario>(entity =>
@@ -36,7 +37,9 @@ namespace BinOdonto.Data.AppData
                     .HasColumnName("SALARIO")
                     .HasColumnType("decimal(18,2)");
                 entity.Property(e => e.DataContratacao).HasColumnName("DATACONTRATACAO");
+                entity.Property(e => e.CEP).HasColumnName("CEP");
             });
+
 
             base.OnModelCreating(modelBuilder);
         }

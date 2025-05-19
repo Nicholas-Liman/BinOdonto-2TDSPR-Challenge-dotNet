@@ -28,5 +28,10 @@ namespace BinOdonto.Application.Dtos
         [DataType(DataType.Date, ErrorMessage = "Data de contratação inválida.")]
         [DataContratacaoValidation(ErrorMessage = "A data de contratação não pode ser no futuro.")]
         public DateTime DataContratacao { get; set; }
+
+        [Required(ErrorMessage = "O CEP é obrigatório.")]
+        [RegularExpression(@"^\d{8}$", ErrorMessage = "O CEP deve conter 8 dígitos numéricos.")]
+        public required string CEP { get; set; }
+
     }
 }
