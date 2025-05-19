@@ -1,42 +1,45 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
 using Xunit;
-using BinOdonto.Application.Interfaces;
+using BinOdonto.Application.Dtos;
 using BinOdonto.Service;
 using RichardSzalay.MockHttp;
-using System.Net.Http;
-using BinOdonto.Application.Dtos;
-using System.Text.Json;
 
-public class ViaCepServiceTests
+namespace BinOdonto.Tests.Services
 {
-    [Fact]
-    public async Task DeveRetornarEnderecoCorretoDoViaCep()
+    public class ViaCepServiceTests
     {
-        // Arrange
-        var cep = "01001000";
-        var responseJson = JsonSerializer.Serialize(new EnderecoResponseDto
+        [Fact]
+        public async Task DeveRetornarEnderecoCorretoDoViaCep()
         {
-            Cep = "01001-000",
-            Logradouro = "Praça da Sé",
-            Bairro = "Sé",
-            Localidade = "São Paulo",
-            Uf = "SP",
-            Ddd = "11"
-        });
+            // Arrange
+            var cep = "01001000";
+            var responseJson = JsonSerializer.Serialize(new EnderecoResponseDto
+            {
+                Cep = "01001-000",
+                Logradouro = "Praça da Sé",
+                Bairro = "Sé",
+                Localidade = "São Paulo",
+                Uf = "SP",
+                Ddd = "11"
+            });
 
-        var mockHttp = new MockHttpMessageHandler();
-        mockHttp.When($"https://viacep.com.br/ws/{cep}/json/")
-                .Respond("application/json", responseJson);
+            var mockHttp = new MockHttpMessageHandler();
+            mockHttp.When($"https://viacep.com.br/ws/{cep}/json/")
+                    .Respond("application/json", responseJson);
 
-        var httpClient = new HttpClient(mockHttp);
-        var service = new ViaCepService(httpClient);
+            var httpClient = new HttpClient(mockHttp);
+            var service = new ViaCepService(httpClient);
 
-        // Act
-        var endereco = await service.ConsultarEnderecoAsync(cep);
+            // Act
+            var endereco = await service.ConsultarEnderecoAsync(cep);
 
-        // Assert
-        Assert.Equal("São Paulo", endereco.Localidade);
-        Assert.Equal("SP", endereco.Uf);
-        Assert.Equal("Praça da Sé", endereco.Logradouro);
+            // Assert
+            Assert.NotNull(endereco);
+            Assert.Equal("São Paulo", endereco.Localidade);
+            Assert.Equal("SP", endereco.Uf);
+            Assert.Equal("Praça da Sé", endereco.Logradouro);
+        }
     }
 }
