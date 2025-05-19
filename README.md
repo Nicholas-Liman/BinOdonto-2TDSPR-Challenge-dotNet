@@ -168,7 +168,3 @@ GET /api/recomendacao?cep=08230-000
 ---
 
 📦 **Desenvolvido por B.I.N.
-
-
-Deseja que eu gere esse README formatado como arquivo `.md` também? Ou que adicione instruções de deploy no Azure ou IIS?
-```
